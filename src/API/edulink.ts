@@ -35,7 +35,6 @@ export class Edulink {
 	}
 
 	public async getTimetable(params: TimetableParams): Promise<TimetableResult> {
-		console.log(params);
 		const response: any = await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
 			{
 				headers: { ...fetchHeaders,"Authorization": `Bearer ${(this.authToken)}`, "X-API-Method": "EduLink.Timetable"},
@@ -54,6 +53,22 @@ export class Edulink {
 		}
 	}
 
-	public getHomework() {
+	public async getHomework(): Promise<any> {
+		const response: any = await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
+			{
+				headers: { ...fetchHeaders, "Authorization": `Bearer ${(this.authToken)}`, "X-API-Method": "EduLink.Homework"},
+				method: "POST",
+				body: JSON.stringify({
+					id: "1",
+					jsonrpc: "2.0",
+					method: "EduLink.Homework",
+					params: {format: 1}
+				}),
+			}).then(res => res.json());
+		if (!response.result.success) {
+			throw new Error(`Homework: ${response.result.error ?? 'unknown'}`);
+		} else {
+			return response.result.homework;
+		}
 	}
 }

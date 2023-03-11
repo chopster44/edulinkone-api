@@ -19,6 +19,8 @@ async function main() {
 	await edulink.Authenticate(credentials);
 	let res = await edulink.getTimetable(timetableParams);
 	console.log(res);
+	let res1 = await edulink.getHomework();
+	console.log(res1.current);
 }
 
 main();
