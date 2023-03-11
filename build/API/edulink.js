@@ -7,61 +7,37 @@ class Edulink {
         this.isAuthenticated = false;
         this.schoolId = schoolId;
     }
-    async Authenticate(credentials) {
+    async request(params) {
         const response = await fetch(`https://${this.schoolId}.edulinkone.com/api/`, {
-            headers: { ...fetchHeaders_1.fetchHeaders, "X-API-Method": "EduLink.Login" },
+            headers: (this.isAuthenticated ? { ...fetchHeaders_1.fetchHeaders, "Authorization": `Bearer ${this.authToken}`, "X-API-Method": `EduLink.${params.action}` } : { ...fetchHeaders_1.fetchHeaders, "X-API-Method": `EduLink.${params.action}` }),
             method: "POST",
             body: JSON.stringify({
                 id: "1",
                 jsonrpc: "2.0",
-                method: "EduLink.Login",
-                params: credentials,
+                method: `EduLink.${params.action}`,
+                params: params.data,
             }),
         }).then(res => res.json());
         if (!response.result.success) {
-            throw new Error(`Login: ${response.result.error ?? 'unknown'}`);
+            throw new Error(`${params.action}: ${response.result.error ?? 'unknown'}`);
         }
         else {
-            this.isAuthenticated = true;
-            this.authToken = response.result.authtoken;
+            return response;
         }
-        console.log(1);
+    }
+    async Authenticate(params) {
+        // @ts-ignore
+        const response = await this.request(params);
+        this.isAuthenticated = true;
+        this.authToken = response.result.authtoken;
     }
     async getTimetable(params) {
-        const response = await fetch(`https://${this.schoolId}.edulinkone.com/api/`, {
-            headers: { ...fetchHeaders_1.fetchHeaders, "Authorization": `Bearer ${(this.authToken)}`, "X-API-Method": "EduLink.Timetable" },
-            method: "POST",
-            body: JSON.stringify({
-                id: "1",
-                jsonrpc: "2.0",
-                method: "EduLink.Timetable",
-                params: params,
-            }),
-        }).then(res => res.json());
-        if (!response.result.success) {
-            throw new Error(`Timetable: ${response.result.error ?? 'unknown'}`);
-        }
-        else {
-            return response.result;
-        }
+        // @ts-ignore
+        return this.request(params);
     }
-    async getHomework() {
-        const response = await fetch(`https://${this.schoolId}.edulinkone.com/api/`, {
-            headers: { ...fetchHeaders_1.fetchHeaders, "Authorization": `Bearer ${(this.authToken)}`, "X-API-Method": "EduLink.Homework" },
-            method: "POST",
-            body: JSON.stringify({
-                id: "1",
-                jsonrpc: "2.0",
-                method: "EduLink.Homework",
-                params: { format: 1 }
-            }),
-        }).then(res => res.json());
-        if (!response.result.success) {
-            throw new Error(`Homework: ${response.result.error ?? 'unknown'}`);
-        }
-        else {
-            return response.result.homework;
-        }
+    async getHomework(params) {
+        // @ts-ignore
+        return this.request(params);
     }
 }
 exports.Edulink = Edulink;
