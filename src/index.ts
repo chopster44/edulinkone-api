@@ -1,5 +1,6 @@
 import {Edulink} from "./API/edulink";
 import {LoginCredentials} from "./types/loginCredentials";
+import {TimetableParams} from "./types/timetableParams";
 
 let edulink = new Edulink("marlingschool");
 
@@ -9,4 +10,15 @@ let credentials: LoginCredentials = {
 	password: "Speedboat1!?"
 }
 
-edulink.Authenticate(credentials);
+let timetableParams: TimetableParams = {
+	date: (new Date()).toISOString().split('T')[0],
+	learner_id: "33002"
+}
+
+async function main() {
+	await edulink.Authenticate(credentials);
+	let res = await edulink.getTimetable(timetableParams);
+	console.log(res);
+}
+
+main();

@@ -7,5 +7,14 @@ let credentials = {
     username: "20c33002",
     password: "Speedboat1!?"
 };
-edulink.Authenticate(credentials);
+let timetableParams = {
+    date: (new Date()).toISOString().split('T')[0],
+    learner_id: "33002"
+};
+async function main() {
+    await edulink.Authenticate(credentials);
+    let res = await edulink.getTimetable(timetableParams);
+    console.log(res);
+}
+main();
 //# sourceMappingURL=index.js.map

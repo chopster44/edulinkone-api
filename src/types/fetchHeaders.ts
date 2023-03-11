@@ -4,6 +4,6 @@ export const fetchHeaders: HeadersInit = {
 	"Content-Type": "application/json",
 	"sec-fetch-dest": "empty",
 	"sec-fetch-mode": "cors",
-	"sec-fetch-site": "same-origin",
+	"sec-fetch-site": "same-site",
 }
 
