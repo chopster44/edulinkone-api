@@ -2,7 +2,14 @@
   "name": "edulinkone-api",
   "version": "0.1.0",
   "description": "A custom-built unofficial api for OvernetData's Edulinkone",
-  "main": "index.js",
+  "keywords": [
+    "edulink",
+    "edulinkone",
+    "api",
+    "edulink-overnet-data",
+    "school",
+    "edulinkone-overnetdata"
+  ],
   "repository": "https://github.com/chopster44/edulinkone-api.git",
   "author": "chopster44 <oscar@chopster44.com>",
   "license": "MIT"
