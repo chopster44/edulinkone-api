@@ -1,0 +1,1 @@
+{"version":3,"file":"fetchHeaders.js","sourceRoot":"","sources":["../../src/types/fetchHeaders.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAgB;IACxC,QAAQ,EAAE,mCAAmC;IAC7C,iBAAiB,EAAE,gBAAgB;IACnC,cAAc,EAAE,kBAAkB;IAClC,gBAAgB,EAAE,OAAO;IACzB,gBAAgB,EAAE,MAAM;IACxB,gBAAgB,EAAE,aAAa;CAC/B,CAAA"}

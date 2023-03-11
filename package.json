@@ -10,6 +10,11 @@
     "school",
     "edulinkone-overnetdata"
   ],
+  "scripts": {
+    "dev": "npm run build; npm run start",
+    "build": "tsc",
+    "start": "node build/index.js"
+  },
   "repository": "https://github.com/chopster44/edulinkone-api.git",
   "author": "chopster44 <oscar@chopster44.com>",
   "license": "MIT",
