@@ -16,6 +16,8 @@ $ npm install edulinkone-api
 
 ## Example Usage
 
+*note* most of the functions have to be run from inside of a function because of how `fetch()` works.
+
 Import the module:
 ```ts
 import { Edulink } from "edulinkone-api";
