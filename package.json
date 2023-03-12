@@ -15,7 +15,7 @@
     "edulinkone-overnetdata"
   ],
   "scripts": {
-    "dev": "npm run build; npm run start",
+    "dev": "yarn build; yarn start",
     "build": "tsc",
     "start": "node build/index.js"
   },
