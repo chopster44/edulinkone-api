@@ -38,13 +38,13 @@ export class Edulink {
 		this.authToken = response.result.authtoken;
 	}
 
-	public async getTimetable(params: TimetableParams): Promise<TimetableResult> {
+	public async getRawTimetable(params: TimetableParams): Promise<TimetableResult> {
 		params.action = "Timetable";
 		// @ts-ignore
 		return this.request(params);
 	}
 
-	public async getHomework(params: HomeworkParams): Promise<HomeworkResult> {
+	public async getRawHomework(params: HomeworkParams): Promise<HomeworkResult> {
 		params.action = "Homework";
 		// @ts-ignore
 		return this.request(params);

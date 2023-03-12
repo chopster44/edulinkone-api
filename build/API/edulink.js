@@ -26,16 +26,19 @@ class Edulink {
         }
     }
     async Authenticate(params) {
+        params.action = "Login";
         // @ts-ignore
         const response = await this.request(params);
         this.isAuthenticated = true;
         this.authToken = response.result.authtoken;
     }
-    async getTimetable(params) {
+    async getRawTimetable(params) {
+        params.action = "Timetable";
         // @ts-ignore
         return this.request(params);
     }
-    async getHomework(params) {
+    async getRawHomework(params) {
+        params.action = "Homework";
         // @ts-ignore
         return this.request(params);
     }
