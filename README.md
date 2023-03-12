@@ -78,3 +78,5 @@ await edulink.getCurrentHomework();
 ```
 The function `getPastHomework()`, returns all past homework in the type `HomeworkResult`.
 
+## Other info
+(*) - if this symbol is used then the functionality of the feature being talked about is not fully known.
