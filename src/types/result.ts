@@ -23,7 +23,7 @@ export interface RawTimetableResult extends RawResult {
 		showing_from: string;
 		showing_to: string;
 		success: boolean;
-		weeks: any;
+		weeks: Array<Week>;
 	}
 }
 
@@ -50,6 +50,7 @@ export interface User {
 	types: Array<string>;
 	username: string;
 	year_group_id: string;
+	id: string;
 }
 export interface Homework {
 	activity: string;
@@ -73,4 +74,45 @@ export interface Homework {
 	status: string;
 	subject: string;
 	user_type: string;
+}
+export interface Week {
+	name: string;
+	is_current: boolean;
+	days: Array<Day>
+}
+export interface Day {
+	cycle_day_id: string;
+	date: string;
+	is_current: boolean;
+	lessons: Array<Lesson>;
+	name: string;
+	original_name: string;
+	periods: Array<Period>;
+}
+export interface Lesson {
+	period_id: string;
+	room: {
+		id: string;
+		moved: boolean;
+		name: string;
+	};
+	teacher: {
+		forename: string;
+		id: string;
+		title: string;
+	};
+	teachers: string;
+	teaching_group: {
+		id: string;
+		name: string;
+		subject: string;
+	}
+}
+export interface Period {
+	empty: boolean;
+	end_time: string;
+	external_id: string;
+	id: string;
+	name: string;
+	start_time: string;
 }
