@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Edulink = void 0;
 const fetchHeaders_1 = require("../types/fetchHeaders");
 class Edulink {
-    constructor(schoolId) {
+    constructor(schoolId, username, password, establishment_id) {
         this.isAuthenticated = false;
         this.schoolId = schoolId;
+        this.Authenticate({ data: { username, password, establishment_id } });
     }
     async request(params) {
         const response = await fetch(`https://${this.schoolId}.edulinkone.com/api/`, {

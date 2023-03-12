@@ -14,48 +14,67 @@ The `Edulink` class is used to access the api. It returns near to raw data retur
 $ npm install edulinkone-api 
 ```
 
-## Example Usage
+## Docs
 
-*note* most of the functions have to be run from inside of a function because of how `fetch()` works.
+*note* most of the functions have to be run from inside an async function because of how `fetch()` works.
 
-Import the module:
+### Import the module & types:
 ```ts
-import { Edulink } from "edulinkone-api";
+import { Edulink, EdulinkTypes } from "edulinkone-api";
 ```
 
-Import the types:
+### Create an API instance:
+When you create an instance it logs into edulink.
 ```ts
-import {EdulinkTypes} from "edulinkone-api";
+const edulink = new Edulink("exampleSchool", "username123", "Password123", 1);
 ```
+The constructor takes the schoolId, username, password and establishment_id.
+The schoolId is the part of the web address which goes before ".edulink.com", e.g. "school.edulinkone.com".
+The username and password are as suggested.
+The establishment_id is the number used by the edulink api(*).
 
-Create an API instance:
-```ts
-const edulink = new Edulink;
-```
+### Get Timetable:
+There are three ways to get the timetable data, `getRawTimetable`, `getThisWeek` and `getToday`.
 
-Authenticate :
 ```ts
-await edulink.Authenticate({data: {
-        establishment_id: 1,
-        password: "Password123",
-        username: "example123",
-    }}
-);
+await edulink.getRawTimetable({ data: {
+	    date: (new Date).toISOString().split('T')[0],
+        learner_id: "123"
+    } 
+});
 ```
+The function `getRawTimetable()`, takes the current date and the learner id in the format of `RawTimetableParams` and 
+returns data as `RawTimetableResult`.
 
-Get Timetable:
 ```ts
-await edulink.getTimetable({data:  {
-        date: (new Data()).toISOString().split('T')[0],
-        learner_id: "123",
-    }}
-);
+await edulink.getThisWeek();
 ```
+The function `getThisWeek()`, returns the week edulink classes as `"current"` in the format of `Week`.
 
-Get Homework:
 ```ts
-await edulink.getHomework({data: {
-	format: 1,
-    }}
-);
+await edulink.getToday()
 ```
+The function `getToday()`, returns the day edulink classes as `"current"` in the format of `Day`.
+
+### Get Homework:
+There are also three ways to get data from the homework list, `getRawHomework()`, `getCurrentHomework()` and 
+`getPastHomework`.
+
+```ts
+await edulink.getRawHomework({ data: {
+	    format: 1
+    } 
+});
+```
+The function `getRawHomework()`, takes a format(*) and returns in the type `RawHomeworkResult`.
+
+```ts
+await edulink.getCurrentHomework();
+```
+The function `getCurrentHomework()`, returns all current homework in the type `HomeworkResult`.
+
+```ts
+await edulink.getCurrentHomework();
+```
+The function `getPastHomework()`, returns all past homework in the type `HomeworkResult`.
+
