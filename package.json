@@ -17,7 +17,8 @@
   "scripts": {
     "dev": "yarn build; yarn start",
     "build": "tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "test": "yarn build; node build/tests/index.test.js"
   },
   "repository": "https://github.com/chopster44/edulinkone-api.git",
   "author": "chopster44 <oscar@chopster44.com>",

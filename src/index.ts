@@ -1,5 +1,5 @@
-import {Edulink} from "./API/edulink";
-import * as EdulinkTypes from "./types/types";
+import {Edulink} from "./API/edulink.js";
+import * as EdulinkTypes from "./types/types.js";
 
 export { EdulinkTypes };
-export default { Edulink };
+export { Edulink };

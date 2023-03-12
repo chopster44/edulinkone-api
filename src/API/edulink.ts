@@ -1,4 +1,4 @@
-import {fetchHeaders} from "../types/fetchHeaders";
+import {fetchHeaders} from "../types/fetchHeaders.js";
 import {
 	AuthResult, Day,
 	Homework,
