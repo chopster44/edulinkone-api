@@ -1,7 +1,11 @@
 {
   "name": "edulinkone-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A custom-built unofficial api for OvernetData's Edulinkone",
+  "homepage": "https://github.com/chopster44/edulinkone-api#readme",
+  "bugs": {
+    "url": "https://github.com/chopster44/edulinkone-api/issues"
+  },
   "keywords": [
     "edulink",
     "edulinkone",
