@@ -24,6 +24,5 @@
   "license": "MIT",
   "dependencies": {
     "typescript": "^4.9.5"
-  },
-  "exports": "./build/index.js"
+  }
 }
