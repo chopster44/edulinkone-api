@@ -1,5 +1,5 @@
 # Edulinkone-api
----
+
 > A custom-built unofficial api for OvernetData's Edulinkone for use in my future projects.
 
 The api offers a documented, easy way to use the publicly undocumented API for Edulink. This is not made by OvernetData
@@ -9,11 +9,11 @@ The `Edulink` class is used to access the api. It returns near to raw data retur
 `EdulinkTypes` has the classes used internally by the library and can be used for interacting with the library.
 
 ## Installation
----
+
 ``` $ npm install edulinkone-api ```
 
 ## Example Usage
----
+
 Import the module:
 ```ts
 import { Edulink } from "edulinkone-api";
