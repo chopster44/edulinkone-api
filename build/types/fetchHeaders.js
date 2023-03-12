@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchHeaders = void 0;
-exports.fetchHeaders = {
+export const fetchHeaders = {
     "accept": "application/json, text/plain, */*",
     "accept-language": "en-US,en;q=0.9",
     "Content-Type": "application/json",

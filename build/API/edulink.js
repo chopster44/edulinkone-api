@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Edulink = void 0;
-const fetchHeaders_1 = require("../types/fetchHeaders");
+import { fetchHeaders } from "../types/fetchHeaders";
 /**
  * Class for interaction with the Edulink API
  */
-class Edulink {
+export class Edulink {
     /**
      * Create an instance of the edulink API helper.
      * @param {string} schoolId - the part of the web address which goes before .edulinkone.com
@@ -25,7 +22,7 @@ class Edulink {
      */
     async request(params) {
         const response = await fetch(`https://${this.schoolId}.edulinkone.com/api/`, {
-            headers: (this.isAuthenticated ? { ...fetchHeaders_1.fetchHeaders, "Authorization": `Bearer ${this.authToken}`, "X-API-Method": `EduLink.${params.action}` } : { ...fetchHeaders_1.fetchHeaders, "X-API-Method": `EduLink.${params.action}` }),
+            headers: (this.isAuthenticated ? { ...fetchHeaders, "Authorization": `Bearer ${this.authToken}`, "X-API-Method": `EduLink.${params.action}` } : { ...fetchHeaders, "X-API-Method": `EduLink.${params.action}` }),
             method: "POST",
             body: JSON.stringify({
                 id: "1",
@@ -115,5 +112,4 @@ class Edulink {
         return rawHomework.result.homework.past;
     }
 }
-exports.Edulink = Edulink;
 //# sourceMappingURL=edulink.js.map
