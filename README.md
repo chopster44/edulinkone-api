@@ -10,7 +10,9 @@ The `Edulink` class is used to access the api. It returns near to raw data retur
 
 ## Installation
 
-``` $ npm install edulinkone-api ```
+```bash
+$ npm install edulinkone-api 
+```
 
 ## Example Usage
 
