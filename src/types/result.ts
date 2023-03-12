@@ -37,6 +37,8 @@ export interface RawHomeworkResult extends RawResult{
 	}
 }
 
+export type HomeworkResult = Array<Homework>;
+
 export interface User {
 	community_group_id: string;
 	establishment_id: string;

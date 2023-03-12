@@ -1,6 +1,13 @@
 import {fetchHeaders} from "../types/fetchHeaders";
-import {AuthResult, RawHomeworkResult, Result, RawTimetableResult} from "../types/result";
-import {AuthParams, RawHomeworkParams, Params, RawTimetableParams} from "../types/params";
+import {
+	AuthResult,
+	Homework,
+	HomeworkResult,
+	RawHomeworkResult,
+	RawResult,
+	RawTimetableResult
+} from "../types/result";
+import {AuthParams, Params, RawHomeworkParams, RawTimetableParams} from "../types/params";
 
 export class Edulink {
 	public isAuthenticated: boolean;
@@ -11,8 +18,8 @@ export class Edulink {
 		this.schoolId = schoolId;
 	}
 
-	private async request(params: Params): Promise<Result | AuthResult | RawTimetableResult | RawHomeworkResult> {
-		const response: Result = await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
+	private async request(params: Params): Promise<RawResult | AuthResult | RawTimetableResult | RawHomeworkResult> {
+		const response: RawResult = await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
 			{
 				headers: (this.isAuthenticated ? { ...fetchHeaders, "Authorization": `Bearer ${this.authToken}`, "X-API-Method": `EduLink.${params.action}`} : { ...fetchHeaders,  "X-API-Method": `EduLink.${params.action}`}),
 				method: "POST",
@@ -43,9 +50,22 @@ export class Edulink {
 		// @ts-ignore
 		return this.request(params);
 	}
+
 	public async getRawHomework(params: RawHomeworkParams): Promise<RawHomeworkResult> {
 		params.action = "Homework";
 		// @ts-ignore
 		return this.request(params);
+	}
+
+	public async getCurrentHomework(): Promise<HomeworkResult> {
+		//@ts-ignore
+		let rawHomework: RawHomeworkResult = this.getRawHomework({data: {format:2}});
+		return rawHomework.result.homework.current;
+	}
+
+	public async getPastHomework(): Promise<HomeworkResult> {
+		//@ts-ignore
+		let rawHomework: RawHomeworkResult = this.getRawHomework({data: {format: 2}});
+		return rawHomework.result.homework.past;
 	}
 }
