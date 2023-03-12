@@ -19,7 +19,7 @@ export interface AuthResult extends Result {
 	}
 }
 
-export interface TimetableResult extends Result {
+export interface RawTimetableResult extends Result {
 	result: {
 		requested_date: string;
 		showing_from: string;
@@ -29,7 +29,7 @@ export interface TimetableResult extends Result {
 	}
 }
 
-export interface HomeworkResult extends Result{
+export interface RawHomeworkResult extends Result{
 	result: {
 		homework: {
 			current: Array<Homework>;

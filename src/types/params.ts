@@ -18,14 +18,14 @@ export interface AuthParams extends Params {
 	}
 }
 
-export interface TimetableParams extends Params {
+export interface RawTimetableParams extends Params {
 	data: {
 		date: string;
 		learner_id: string;
 	}
 }
 
-export interface HomeworkParams extends Params {
+export interface RawHomeworkParams extends Params {
 	data: {
 		format: number;
 	}
