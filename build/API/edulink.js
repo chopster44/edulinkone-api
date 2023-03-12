@@ -31,16 +31,40 @@ class Edulink {
         const response = await this.request(params);
         this.isAuthenticated = true;
         this.authToken = response.result.authtoken;
+        this.learner_id = response.result.user.id;
     }
     async getRawTimetable(params) {
         params.action = "Timetable";
         // @ts-ignore
-        return this.request(params);
+        return await this.request(params);
+    }
+    async getThisWeek() {
+        let rawTimetable = await this.getRawTimetable({ data: { date: (new Date).toISOString().split('T')[0], learner_id: this.learner_id } });
+        return rawTimetable.result.weeks[0];
+    }
+    async getToday() {
+        //@ts-ignore
+        let rawWeek = this.getThisWeek();
+        for (let i = 0; i < rawWeek.days.length; i++) {
+            if (rawWeek.days[i].date === (new Date).toISOString().split('T')[0]) {
+                return rawWeek.days[i];
+            }
+        }
     }
     async getRawHomework(params) {
         params.action = "Homework";
         // @ts-ignore
-        return this.request(params);
+        return await this.request(params);
+    }
+    async getCurrentHomework() {
+        //@ts-ignore
+        let rawHomework = await this.getRawHomework({ data: { format: 2 } });
+        return rawHomework.result.homework.current;
+    }
+    async getPastHomework() {
+        //@ts-ignore
+        let rawHomework = await this.getRawHomework({ data: { format: 2 } });
+        return rawHomework.result.homework.past;
     }
 }
 exports.Edulink = Edulink;
