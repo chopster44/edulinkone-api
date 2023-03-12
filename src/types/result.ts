@@ -1,6 +1,4 @@
-import {Homework} from "./homework";
-
-export interface Result {
+export interface RawResult {
 	id: string;
 	jsonrpc: string;
 	result: {
@@ -9,7 +7,7 @@ export interface Result {
 	};
 }
 
-export interface AuthResult extends Result {
+export interface AuthResult extends RawResult {
 	result: {
 		analytics_enabled: Array<any>;
 		api_version: number;
@@ -19,7 +17,7 @@ export interface AuthResult extends Result {
 	}
 }
 
-export interface RawTimetableResult extends Result {
+export interface RawTimetableResult extends RawResult {
 	result: {
 		requested_date: string;
 		showing_from: string;
@@ -29,7 +27,7 @@ export interface RawTimetableResult extends Result {
 	}
 }
 
-export interface RawHomeworkResult extends Result{
+export interface RawHomeworkResult extends RawResult{
 	result: {
 		homework: {
 			current: Array<Homework>;
@@ -50,4 +48,27 @@ export interface User {
 	types: Array<string>;
 	username: string;
 	year_group_id: string;
+}
+export interface Homework {
+	activity: string;
+	attachments: Array<any>;
+	available_date: string;
+	available_text: string;
+	cloneable: boolean;
+	completed: boolean;
+	deletable: boolean;
+	due_date: string;
+	due_reminder: any;
+	due_text: string;
+	duration: any;
+	employee_received: any;
+	format: number;
+	icon: string;
+	id: string;
+	owner_id: string;
+	set_by: string;
+	source: string;
+	status: string;
+	subject: string;
+	user_type: string;
 }
