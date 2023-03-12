@@ -14,9 +14,10 @@ export class Edulink {
 	readonly schoolId: string;
 	public authToken: string;
 	public learner_id: string;
-	constructor(schoolId: string) {
+	constructor(schoolId: string, username: string, password: string, establishment_id: number) {
 		this.isAuthenticated = false;
 		this.schoolId = schoolId;
+		this.Authenticate({data: {username, password, establishment_id}});
 	}
 
 	private async request(params: Params): Promise<RawResult | AuthResult | RawTimetableResult | RawHomeworkResult> {
@@ -38,7 +39,7 @@ export class Edulink {
 		}
 	}
 
-	public async Authenticate(params: AuthParams) {
+	private async Authenticate(params: AuthParams) {
 		params.action = "Login";
 		// @ts-ignore
 		const response: AuthResult = await this.request(params);
