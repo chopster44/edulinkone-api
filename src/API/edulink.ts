@@ -31,6 +31,7 @@ export class Edulink {
 	}
 
 	public async Authenticate(params: AuthParams) {
+		params.action = "Login";
 		// @ts-ignore
 		const response: AuthResult = await this.request(params);
 		this.isAuthenticated = true;
@@ -38,11 +39,13 @@ export class Edulink {
 	}
 
 	public async getTimetable(params: TimetableParams): Promise<TimetableResult> {
+		params.action = "Timetable";
 		// @ts-ignore
 		return this.request(params);
 	}
 
 	public async getHomework(params: HomeworkParams): Promise<HomeworkResult> {
+		params.action = "Homework";
 		// @ts-ignore
 		return this.request(params);
 	}

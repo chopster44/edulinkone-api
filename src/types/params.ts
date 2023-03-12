@@ -6,8 +6,8 @@ export interface Params {
 export interface AuthParams extends Params {
 	data: {
 		establishment_id: number;
-		fcm_token_old: string;
-		from_app: boolean;
+		fcm_token_old?: string;
+		from_app?: boolean;
 		password: string;
 		ui_info?: {
 			format: number;
