@@ -13,7 +13,14 @@ export class Edulink {
     constructor(schoolId, username, password, establishment_id) {
         this.isAuthenticated = false;
         this.schoolId = schoolId;
-        this.Authenticate({ data: { username, password, establishment_id } });
+        this.authParams = {
+            action: "Login",
+            data: {
+                username: username,
+                password: password,
+                establishment_id: establishment_id
+            }
+        };
     }
     /**
      * Send a request to the edulink API
@@ -40,14 +47,11 @@ export class Edulink {
     }
     /**
      * Used to log in to edulink allowing the api to be used.
-     * @param {AuthParams} params - takes the schoolId, user and password
-     * @constructor
      * @private
      */
-    async Authenticate(params) {
-        params.action = "Login";
+    async Authenticate() {
         // @ts-ignore
-        const response = await this.request(params);
+        const response = await this.request(this.authParams);
         this.isAuthenticated = true;
         this.authToken = response.result.authtoken;
         this.learner_id = response.result.user.id;

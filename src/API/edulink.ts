@@ -34,6 +34,8 @@ export class Edulink {
 	 */
 	public learner_id: string;
 
+	private authParams: AuthParams;
+
 	/**
 	 * Create an instance of the edulink API helper.
 	 * @param {string} schoolId - the part of the web address which goes before .edulinkone.com
@@ -44,7 +46,14 @@ export class Edulink {
 	constructor(schoolId: string, username: string, password: string, establishment_id: number) {
 		this.isAuthenticated = false;
 		this.schoolId = schoolId;
-		this.Authenticate({data: {username, password, establishment_id}});
+		this.authParams = {
+			action: "Login",
+			data: {
+				username: username,
+				password: password,
+				establishment_id: establishment_id
+			}
+		}
 	}
 
 	/**
@@ -73,14 +82,11 @@ export class Edulink {
 
 	/**
 	 * Used to log in to edulink allowing the api to be used.
-	 * @param {AuthParams} params - takes the schoolId, user and password
-	 * @constructor
 	 * @private
 	 */
-	private async Authenticate(params: AuthParams) {
-		params.action = "Login";
+	public async Authenticate() {
 		// @ts-ignore
-		const response: AuthResult = await this.request(params);
+		const response: AuthResult = await this.request(this.authParams);
 		this.isAuthenticated = true;
 		this.authToken = response.result.authtoken;
 		this.learner_id = response.result.user.id;
