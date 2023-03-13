@@ -1,4 +1,3 @@
-import {fetchHeaders} from "../types/fetchHeaders.js";
 import {
 	AuthResult, Day,
 	Homework,
@@ -63,9 +62,22 @@ export class Edulink {
 	 * @private
 	 */
 	private async request(params: Params): Promise<RawResult | AuthResult | RawTimetableResult | RawHomeworkResult> {
-		const response: RawResult = await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
+		let headers: HeadersInit  = {
+			"accept": "application/json, text/plain, */*",
+			"accept-language": "en-US,en;q=0.9",
+			"Content-Type": "application/json",
+			"sec-fetch-dest": "empty",
+			"sec-fetch-mode": "cors",
+			"sec-fetch-site": "same-site",
+			"X-API-method": `EduLink.${params.action}`
+		};
+		if (this.isAuthenticated) {
+			headers["Authorization"] = `Bearer ${this.authToken}`;
+		}
+
+		const response: RawResult = <RawResult>await fetch(`https://${this.schoolId}.edulinkone.com/api/`,
 			{
-				headers: (this.isAuthenticated ? { ...fetchHeaders, "Authorization": `Bearer ${this.authToken}`, "X-API-Method": `EduLink.${params.action}`} : { ...fetchHeaders,  "X-API-Method": `EduLink.${params.action}`}),
+				headers,
 				method: "POST",
 				body: JSON.stringify({
 					id: "1",
