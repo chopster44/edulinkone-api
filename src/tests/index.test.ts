@@ -20,10 +20,16 @@ async function main () {
 	if (thisWeek == undefined) {
 		throw new Error("Timetable Error: out from getThisWeek() is undefined");
 	}
+	if (!thisWeek.is_current)  {
+		throw new Error("Timetable Error: this week is not this week");
+	}
 
 	let today = await edulinkTest.getToday();
 	if (today == undefined) {
 		throw new Error("Timetable Error: out from getToday() is undefined");
+	}
+	if (!today.is_current) {
+		throw new Error("Timetable Error: today is not today");
 	}
 }
 

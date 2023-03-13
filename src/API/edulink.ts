@@ -131,7 +131,7 @@ export class Edulink {
 	 */
 	public async getToday(): Promise<Day> {
 		//@ts-ignore
-		let rawWeek: Week = this.getThisWeek();
+		let rawWeek: Week = await this.getThisWeek();
 		for (let i = 0; i < rawWeek.days.length; i++) {
 			if (rawWeek.days[i].is_current === true) {
 		 		return rawWeek.days[i]
