@@ -91,11 +91,11 @@ export class Edulink {
      * @return {Day}
      */
     async getToday() {
-        //@ts-ignore
-        let rawWeek = this.getThisWeek();
-        for (let i = 0; i < rawWeek.days.length; i++) {
-            if (rawWeek.days[i].is_current === true) {
-                return rawWeek.days[i];
+        // @ts-ignore
+        let thisweek = await this.getThisWeek();
+        for (let i = 0; i < thisweek.days.length; i++) {
+            if (thisweek.days[i].is_current) {
+                return thisweek.days[i];
             }
         }
     }
