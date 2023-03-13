@@ -1,4 +1,5 @@
 import {Edulink} from "../index.js";
+console.log(process.argv)
 async function main () {
 	let edulinkTest = new Edulink(process.argv[2], process.argv[3], process.argv[4], 2);
 	await edulinkTest.Authenticate();
