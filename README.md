@@ -24,7 +24,6 @@ import { Edulink, EdulinkTypes } from "edulinkone-api";
 ```
 
 ### Create an API instance:
-When you create an instance it logs into edulink.
 ```ts
 const edulink = new Edulink("exampleSchool", "username123", "Password123", 1);
 ```
@@ -32,6 +31,13 @@ The constructor takes the schoolId, username, password and establishment_id.
 The schoolId is the part of the web address which goes before ".edulink.com", e.g. "school.edulinkone.com".
 The username and password are as suggested.
 The establishment_id is the number used by the edulink api(*).
+
+When you create an instance it does not log into edulink. So you need to run:
+```ts
+await edulink.Authenticate();
+```
+No arguments are required as they are collected on the creation of a instance.
+
 
 ### Get Timetable:
 There are three ways to get the timetable data, `getRawTimetable`, `getThisWeek` and `getToday`.
