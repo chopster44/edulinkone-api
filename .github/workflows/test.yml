@@ -13,9 +13,9 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install dependencies
-        run: npm install
+        run: yarn
       - name: Build
-        run: npm run build
+        run: yarn build
       - name: Run the test
         run: |
-          npm run test -- "${{ secrets.SCHOOLID }}" "${{ secrets.USERNAME }}" "${{ secrets.PASSWORD }}"
+          yarn test "${{ secrets.SCHOOLID }}" "${{ secrets.USERNAME }}" "${{ secrets.PASSWORD }}"
