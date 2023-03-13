@@ -134,7 +134,7 @@ export class Edulink {
 		let rawWeek: Week = await this.getThisWeek();
 		for (let i = 0; i < rawWeek.days.length; i++) {
 			if (rawWeek.days[i].is_current) {
-		 		return rawWeek.days[i]
+		 		return rawWeek.days[i];
 			}
 		}
 	}
