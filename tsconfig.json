@@ -8,7 +8,8 @@
       "dom"
     ],
     "sourceMap": true,
-    "removeComments": false
+    "removeComments": false,
+    "moduleResolution": "NodeNext"
   },
   "exclude": [
     "node_modules",
