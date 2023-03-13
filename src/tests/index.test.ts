@@ -31,6 +31,24 @@ async function main () {
 	if (!today.is_current) {
 		throw new Error("Timetable Error: today is not today");
 	}
+
+	let rawHomework: EdulinkTypes.ResultTypes.RawHomeworkResult = await edulinkTest.getRawHomework({data: {
+		format: 2
+		}
+	});
+	if (rawHomework == undefined) {
+		throw new Error("Homework Error: out from homework is undefined");
+	}
+
+	let currentHomework = await edulinkTest.getCurrentHomework();
+	if (currentHomework == undefined) {
+		throw new Error("Homework Error: out from current homework is undefined");
+	}
+
+	let pastHomework = await edulinkTest.getCurrentHomework();
+	if (pastHomework == undefined) {
+		throw new Error("Homework Error: out from past homework is undefined");
+	}
 }
 
 try {
