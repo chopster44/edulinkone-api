@@ -1,5 +1,5 @@
-name: Publish on release
-on: 
+name: Publish Package to npmjs
+on:
   release:
     types: [published]
 jobs:
@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with: 
+        with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
