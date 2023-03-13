@@ -18,4 +18,4 @@ jobs:
         run: yarn build
       - name: Run the test
         run: |
-          yarn test "${{ secrets.SCHOOLID }}" "${{ secrets.USERNAME }}" "${{ secrets.PASSWORD }}"
+          yarn test "$secrets.SCHOOLID" "$secrets.USERNAME" "$secrets.PASSWORD"
