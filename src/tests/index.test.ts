@@ -12,12 +12,12 @@ async function main () {
 			learner_id: edulinkTest.learner_id
 		}
 	});
-	if (rawTimetable == undefined) {
+	if (rawTimetable === undefined) {
 		throw new Error("Timetable Error: out from timetable is undefined");
 	}
 
 	let thisWeek = await edulinkTest.getThisWeek();
-	if (thisWeek == undefined) {
+	if (thisWeek === undefined) {
 		throw new Error("Timetable Error: out from getThisWeek() is undefined");
 	}
 	if (!thisWeek.is_current)  {
@@ -25,7 +25,7 @@ async function main () {
 	}
 
 	let today = await edulinkTest.getToday();
-	if (today == undefined) {
+	if (today === undefined) {
 		throw new Error("Timetable Error: out from getToday() is undefined");
 	}
 	if (!today.is_current) {
@@ -36,17 +36,17 @@ async function main () {
 		format: 2
 		}
 	});
-	if (rawHomework == undefined) {
+	if (rawHomework === undefined) {
 		throw new Error("Homework Error: out from homework is undefined");
 	}
 
 	let currentHomework = await edulinkTest.getCurrentHomework();
-	if (currentHomework == undefined) {
+	if (currentHomework === undefined) {
 		throw new Error("Homework Error: out from current homework is undefined");
 	}
 
 	let pastHomework = await edulinkTest.getCurrentHomework();
-	if (pastHomework == undefined) {
+	if (pastHomework === undefined) {
 		throw new Error("Homework Error: out from past homework is undefined");
 	}
 }
