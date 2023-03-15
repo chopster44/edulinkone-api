@@ -7,7 +7,6 @@ import {
 	RawTimetableResult, Week
 } from "../types/result.js";
 import {AuthParams, Params, RawHomeworkParams, RawTimetableParams} from "../types/params.js";
-import fetch from "node-fetch";
 
 /**
  * Class for interaction with the Edulink API
