@@ -204,7 +204,7 @@ export class Edulink {
 				completed: params.completed,
 				homework_id: params.id,
 				learner_id: this.learner_id,
-				source: "Edulink"
+				source: "EduLink"
 			}
 		}
 		await this.request(reqParams);
