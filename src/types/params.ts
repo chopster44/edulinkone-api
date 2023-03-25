@@ -30,3 +30,8 @@ export interface RawHomeworkParams extends Params {
 		format: number;
 	}
 }
+
+export interface HomeworkDescriptionParams {
+	id: string,
+	source: string
+}

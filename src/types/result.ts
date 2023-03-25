@@ -37,6 +37,13 @@ export interface RawHomeworkResult extends RawResult{
 	}
 }
 
+export interface HomeworkDescriptionResult extends RawResult{
+	result: {
+		success: boolean,
+		homework: HomeworkDescription
+	}
+}
+
 export type HomeworkResult = Array<Homework>;
 
 export interface User {
@@ -74,6 +81,17 @@ export interface Homework {
 	status: string;
 	subject: string;
 	user_type: string;
+}
+export interface HomeworkDescription {
+	id: string,
+	activity: string,
+	description: string,
+	subject: string,
+	due_date: string,
+	available_date: string,
+	user_type: string,
+	owner: string,
+	format: number,
 }
 export interface Week {
 	name: string;

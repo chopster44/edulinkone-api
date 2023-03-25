@@ -1,12 +1,14 @@
 import {
-	AuthResult, Day,
-	Homework,
+	AuthResult,
+	Day,
+	Homework, HomeworkDescriptionResult,
 	HomeworkResult,
 	RawHomeworkResult,
 	RawResult,
-	RawTimetableResult, Week
+	RawTimetableResult,
+	Week
 } from "../types/result.js";
-import {AuthParams, Params, RawHomeworkParams, RawTimetableParams} from "../types/params.js";
+import {AuthParams, HomeworkDescriptionParams, Params, RawHomeworkParams, RawTimetableParams} from "../types/params.js";
 
 /**
  * Class for interaction with the Edulink API
@@ -60,7 +62,7 @@ export class Edulink {
 	 * @param {Params} params - the edulink action and any data being sent in the http request body
 	 * @private
 	 */
-	private async request(params: Params): Promise<RawResult | AuthResult | RawTimetableResult | RawHomeworkResult> {
+	private async request(params: Params): Promise<RawResult | AuthResult | RawTimetableResult | RawHomeworkResult | HomeworkDescriptionResult> {
 		let headers: HeadersInit  = {
 			"accept": "application/json, text/plain, */*",
 			"accept-language": "en-US,en;q=0.9",
@@ -166,5 +168,21 @@ export class Edulink {
 		//@ts-ignore
 		let rawHomework: RawHomeworkResult = await this.getRawHomework({data: {format: 2}});
 		return rawHomework.result.homework.past;
+	}
+
+	/**
+	 * gets the description data of a given homework
+	 * @param {HomeworkDescriptionParams} params
+	 */
+	public async getHomeworkDescription(params: HomeworkDescriptionParams): Promise<HomeworkDescriptionResult> {
+		let reqParams: Params = {
+			action: "HomeworkDetails",
+			data: {
+				homeworkId: params.id,
+				source: params.source,
+			}
+		}
+		//@ts-ignore
+		return await this.request(reqParams);
 	}
 }
