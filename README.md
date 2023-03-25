@@ -36,7 +36,7 @@ When you create an instance it does not log into edulink. So you need to run:
 ```ts
 await edulink.Authenticate();
 ```
-No arguments are required as they are collected on the creation of a instance.
+No arguments are required as they are collected on the creation of an instance.
 
 
 ### Get Timetable:
@@ -83,6 +83,13 @@ The function `getCurrentHomework()`, returns all current homework in the type `H
 await edulink.getCurrentHomework();
 ```
 The function `getPastHomework()`, returns all past homework in the type `HomeworkResult`.
+
+### Other homework related data:
+
+```ts
+await edulink.getHomeworkDescription({id: "12345", source: "Edulink"});
+```
+The function `getHomeworkDescription()`, takes the  `id` of the homework and `"Edulink"` as the source(*)
 
 ## Other info
 (*) - if this symbol is used then the functionality of the feature being talked about is not fully known.
