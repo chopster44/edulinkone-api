@@ -2,7 +2,6 @@
 
 This file only lists changes classed as major or minor versions by Semantic Versioning. For patches, look at the releases
 on [GitHub](https://github.com/chopster44/edulinkone-api).
-The notes for the minor and major versions will just be summaries of the previous lover level updates. 
 
 ## [1.1.0] - 2023-03-14
 ### Added
