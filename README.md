@@ -89,7 +89,12 @@ The function `getPastHomework()`, returns all past homework in the type `Homewor
 ```ts
 await edulink.getHomeworkDescription({id: "12345", source: "Edulink"});
 ```
-The function `getHomeworkDescription()`, takes the  `id` of the homework and `"Edulink"` as the source(*)
+The function `getHomeworkDescription()`, takes the  `id` of the homework and `"Edulink"` as the source(*).
+
+```ts
+await edulink.completeHomework({id: "12345", completed: true});
+```
+The function `completeHomework()`, takes the `id` of the homework and if it is `completed` as a boolean.
 
 ## Other info
 (*) - if this symbol is used then the functionality of the feature being talked about is not fully known.
