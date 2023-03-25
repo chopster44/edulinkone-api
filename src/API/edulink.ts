@@ -178,7 +178,7 @@ export class Edulink {
 		let reqParams: Params = {
 			action: "HomeworkDetails",
 			data: {
-				homeworkId: params.id,
+				homework_id: params.id,
 				source: params.source,
 			}
 		}
