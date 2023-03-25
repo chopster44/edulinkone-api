@@ -35,3 +35,8 @@ export interface HomeworkDescriptionParams {
 	id: string,
 	source: string
 }
+
+export interface HomeworkCompleteParams {
+	id: string,
+	completed: boolean,
+}

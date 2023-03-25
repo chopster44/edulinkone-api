@@ -8,7 +8,14 @@ import {
 	RawTimetableResult,
 	Week
 } from "../types/result.js";
-import {AuthParams, HomeworkDescriptionParams, Params, RawHomeworkParams, RawTimetableParams} from "../types/params.js";
+import {
+	AuthParams,
+	HomeworkCompleteParams,
+	HomeworkDescriptionParams,
+	Params,
+	RawHomeworkParams,
+	RawTimetableParams
+} from "../types/params.js";
 
 /**
  * Class for interaction with the Edulink API
@@ -184,5 +191,22 @@ export class Edulink {
 		}
 		//@ts-ignore
 		return await this.request(reqParams);
+	}
+
+	/**
+	 * tell edulink to change a given homework's state of completion
+	 * @param {HomeworkCompleteParams} params
+	 */
+	public async completeHomework(params: HomeworkCompleteParams) {
+		let reqParams: Params = {
+			action: "HomeworkCompleted",
+			data: {
+				completed: params.completed,
+				homework_id: params.id,
+				learner_id: this.learner_id,
+				source: "Edulink"
+			}
+		}
+		await this.request(reqParams);
 	}
 }
