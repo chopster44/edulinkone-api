@@ -3,7 +3,7 @@ export interface RawResult {
 	jsonrpc: string;
 	result: {
 		success: boolean;
-		error?: boolean;
+		error?: string;
 	};
 }
 
