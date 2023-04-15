@@ -95,7 +95,12 @@ export class Edulink {
 				}),
 			}).then(res => res.json());
 		if (!response.result.success){
-			throw new Error(`${params.action}: ${response.result.error ?? 'unknown'}`)
+			if(response.result.error === "You are not logged in") {
+				await this.Authenticate();
+				await this.request(params);
+			} else {
+				throw new Error(`${params.action}: ${response.result.error ?? 'unknown'}`)
+			}
 		} else {
 			return response;
 		}
